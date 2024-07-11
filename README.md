@@ -31,11 +31,20 @@
 10. Setup config file for your new project
     - project/src/main/resources/application.properties
 
-        spring.datasource.url=jdbc:mysql://localhost:3306/todo
+        spring.application.name=todo
+        spring.datasource.url=jdbc:postgresql://localhost:5432/todo
         spring.datasource.username=postgres
         spring.datasource.password=postgres
         
-7. Right-click on Java file and run.
+11. Right-click on Java file and run.
+    - If all goes well, it will run and will tell you it set up a port-forward to a public IP and give you a link to your running site
+        - You can share this link!
 
+12. In terminal:  `npm create vue@latest` and name your project something like todo-client
+    
+13. Open client/vite.config and change the build folder to point to your java apps static folder.  Add this to top level object:
 
-
+  build : {
+    outDir: '../todo/src/main/resources/static/'
+  }
+14. Re-run the java app.  If you see the vite app, things are all set.
