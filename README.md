@@ -2,12 +2,12 @@
 
 1. Create a new empty repository on github
 2. Create a codespace for it
-3. From the command pallete, "Codespaces: Add Dev Container Configuration Files"
+3. From the command pallete, `Codespaces: Add Dev Container Configuration Files`
     - Create new
     - Java and Postgres
     - Include Maven
     - (Add) Node/Npm
-4. From the command pallete "Codespaces: Rebuild container" (not full)
+4. From the command pallete `Codespaces: Rebuild container` 
 5. Under the extensions left tab, install these extensions for VSCode:
     - Vue - Official
     - Spring Initializr Java Support
