@@ -43,7 +43,7 @@
     - If all goes well, it will run and will tell you it set up a port-forward to a public IP and give you a link to your running site
         - You can share this link!
 
-12. In terminal:  `npm create vue@latest` and name your project something like todo-client
+12. Add a new terminal tab and type:  `npm create vue@latest` and name your project something like todo-client
     
 13. Open client/vite.config and change the build folder to point to your java apps static folder.  Add this to top level object:
 
