@@ -32,11 +32,11 @@
     - project/src/main/resources/application.properties
 
         spring.application.name=todo
-        spring.datasource.url=jdbc:postgresql://localhost:5432/todo
+        spring.datasource.url=jdbc:postgresql://localhost:5432/postgres
         spring.datasource.username=postgres
         spring.datasource.password=postgres
         
-11. Right-click on Java file and run.
+11. Run the java app from the "Java Projects" tab on the left file browser
     - If all goes well, it will run and will tell you it set up a port-forward to a public IP and give you a link to your running site
         - You can share this link!
 
