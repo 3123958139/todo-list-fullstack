@@ -7,13 +7,13 @@
     - Java and Postgres
     - Include Maven
     - (Add) Node/Npm
-4. "Codespaces: Rebuild container" (not full)
-5. Install some extensions for VSCode:
+4. In command pallete "Codespaces: Rebuild container" (not full)
+5. In extensions, install these extensions for VSCode:
     - Vue - Official
     - Spring Initializr Java Support
     - SQL Tools
     - SQL Tools Postgres/Cockroach Driver
-6. Reload container
+6. Restart container (NOT rebuild)
 7. Click database icon on left and add Postgres connection:
     - localhost, postgres:postgres, postgres database
 8. Make and run a create db script
@@ -21,7 +21,7 @@
     - Add a sql file for creating your database, end it with a test select.
     - At the top of the file, click, "Run on active connection" button.  
     - Results for each statement will be on a tab in the right split. Check last one.
-9. Spring Initializr: Create Maven Project (Java 21)
+9. From command palette Spring Initializr: Create Maven Project (Java 21)
     - Add our usual deps:
         - Spring Web
         - JDBC
