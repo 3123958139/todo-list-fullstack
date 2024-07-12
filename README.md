@@ -31,12 +31,14 @@
         - Spring Dev Tools
 10. Setup config file for your new project
     - project/src/main/resources/application.properties
-
+      
+        ```
         spring.application.name=todo
         spring.datasource.url=jdbc:postgresql://localhost:5432/postgres
         spring.datasource.username=postgres
         spring.datasource.password=postgres
-        
+        ```
+             
 11. Run the java app from the "Java Projects" tab on the left file browser
     - If all goes well, it will run and will tell you it set up a port-forward to a public IP and give you a link to your running site
         - You can share this link!
@@ -45,6 +47,7 @@
     
 13. Open client/vite.config and change the build folder to point to your java apps static folder.  Add this to top level object:
 
+```json
   build : {
     outDir: '../todo/src/main/resources/static/'
   },
@@ -53,6 +56,7 @@
       '/api': 'http://localhost:8080'
     }
   }
+```
 
 15. Start a new terminal
     - cd to the client app
