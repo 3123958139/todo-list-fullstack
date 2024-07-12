@@ -46,5 +46,13 @@
 
   build : {
     outDir: '../todo/src/main/resources/static/'
+  },
+  server : {
+    proxy: {
+      '/api': 'http://localhost:8080'
+    }
   }
-14. Re-run the java app.  If you see the vite app, things are all set.
+
+15. Start a new terminal
+    - cd to the client app
+    - npm run dev

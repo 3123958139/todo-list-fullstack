@@ -15,5 +15,10 @@ export default defineConfig({
   },
   build : {
     outDir: '../todo/src/main/resources/static/'
+  },
+  server : {
+    proxy: {
+      '/api': 'http://localhost:8080'
+    }
   }
 })
