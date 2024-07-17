@@ -14,7 +14,7 @@ export default defineConfig({
     }
   },
   build : {
-    outDir: '../todo/src/main/resources/static/'
+    outDir: '../server/src/main/resources/static/'
   },
   server : {
     proxy: {

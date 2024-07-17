@@ -9,7 +9,7 @@
             "name": "localhost",
             "database": "postgres",
             "username": "postgres",
-            "password": "postgres"
+            "password": "postgres1"
         }
     ]
 }

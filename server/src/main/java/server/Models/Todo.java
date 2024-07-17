@@ -1,4 +1,4 @@
-package com.mlambert.todo.Models;
+package server.Models;
 
 import lombok.Setter;
 import lombok.Getter;

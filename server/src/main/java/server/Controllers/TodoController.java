@@ -1,4 +1,4 @@
-package com.mlambert.todo.Controllers;
+package server.Controllers;
 
 import java.util.List;
 
@@ -10,11 +10,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.mlambert.todo.Models.Todo;
+import server.Models.Todo;
 
 @RestController
 @RequestMapping("/api/todos")
-@CrossOrigin(origins = "upgraded-goggles-7x446wgg7pwfr54p-5173.app.github.dev")
+@CrossOrigin
 public class TodoController {
     private JdbcTemplate template;
 
