@@ -12,6 +12,16 @@
 			"version": "lts",
 			"nvmVersion": "latest"
 		}
+	},
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"vscjava.vscode-java-pack",
+				"mtxr.sqltools",
+				"mtxr.sqltools-driver-pg",
+				"Vue.volar"
+			]
+		}
 	}
 
 	// Features to add to the dev container. More info: https://containers.dev/features.
