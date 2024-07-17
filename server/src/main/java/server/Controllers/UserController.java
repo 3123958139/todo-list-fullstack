@@ -14,39 +14,39 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import server.Daos.TodoDao;
-import server.Models.Todo;
+import server.Daos.UserDao;
+import server.Models.User;
 
 @RestController
-@RequestMapping("/api/todos")
+@RequestMapping("/api/users")
 @CrossOrigin
-public class TodoController {
-    private TodoDao todoDao;
+public class UserController {
+    private UserDao userDao;
 
-    public TodoController(TodoDao todoDao) {
-        this.todoDao = todoDao;
+    public UserController(UserDao userDao) {
+        this.userDao = userDao;
     }
 
     @GetMapping
-    public List<Todo> listTodos() {
-        return todoDao.getAllTodos();
+    public List<User> listUsers() {
+        return userDao.getAllUsers();
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public void createTodo(@RequestBody Todo todo) {
-        todoDao.createTodo(todo);
+    public void createUser(@RequestBody User user) {
+        userDao.createUser(user);
     }
 
-    @PutMapping("/:id")
-    public void updateTodo(@PathVariable int id, @RequestBody Todo todo) {
-        todo.setId(id);
-        todoDao.updateTodo(todo);
+    @PutMapping("/:username")
+    public void updateUser(@PathVariable String username, @RequestBody User User) {
+        User.setUsername(username);
+        userDao.updatePassword(User);
     }
 
     @DeleteMapping("/:id")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteTodoById(@PathVariable int id) {
-        todoDao.deleteTodoById(id);
+    public void deleteUserByUsername(@PathVariable String username) {
+        userDao.deleteUser(username);
     }
 }
