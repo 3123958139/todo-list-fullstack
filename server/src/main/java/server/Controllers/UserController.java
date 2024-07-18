@@ -32,19 +32,24 @@ public class UserController {
         return userDao.getAllUsers();
     }
 
+    @GetMapping("/{username}")
+    public User getUserByUsername(@PathVariable String username) {
+        return userDao.getUserByUsername(username);
+    }
+
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public void createUser(@RequestBody User user) {
         userDao.createUser(user);
     }
 
-    @PutMapping("/:username")
+    @PutMapping("/{username}")
     public void updateUser(@PathVariable String username, @RequestBody User User) {
         User.setUsername(username);
         userDao.updatePassword(User);
     }
 
-    @DeleteMapping("/:id")
+    @DeleteMapping("/{username}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteUserByUsername(@PathVariable String username) {
         userDao.deleteUser(username);

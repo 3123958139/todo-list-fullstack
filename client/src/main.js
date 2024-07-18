@@ -10,9 +10,14 @@ import * as components from 'vuetify/components'
 import * as directives from 'vuetify/directives'
 
 const app = createApp(App);
-const router = createAppRouter();
-const store = createAppStore();
+export const router = createAppRouter();
+export const store = createAppStore();
 const vuetify = createVuetify({ components, directives });
+
+const localStorageToken = localStorage.getItem('token');
+if (localStorageToken) {
+    store.commit('setToken', localStorageToken);
+}
 
 app.use(router);
 app.use(store);

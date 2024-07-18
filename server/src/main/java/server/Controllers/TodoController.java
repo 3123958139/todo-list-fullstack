@@ -38,13 +38,13 @@ public class TodoController {
         todoDao.createTodo(todo);
     }
 
-    @PutMapping("/:id")
+    @PutMapping("/{id}")
     public void updateTodo(@PathVariable int id, @RequestBody Todo todo) {
         todo.setId(id);
         todoDao.updateTodo(todo);
     }
 
-    @DeleteMapping("/:id")
+    @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteTodoById(@PathVariable int id) {
         todoDao.deleteTodoById(id);
