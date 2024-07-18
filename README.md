@@ -202,14 +202,27 @@ This project is set up to work with GitHub CodeSpace.  You can open the project 
 "Code" button at the top of the repository page, and selecting "Open with CodeSpace".  This will open the project in a
 CodeSpace.
 
-You will need to connect the the local postgres database and run your script to create the database using the SqlTools 
-extension in VSCode.  Since codespaces just includes the default postgres database without an easy way to create a new
-database, you will need to connect to the database named `postgres` and update the `application.properties` file in the 
-`server/src/main/resources` folder with the correct database connection information.  (Specifically, change the end of 
-the url to postgres.)
-
 A benefit to using CodeSpace is that you do not need to have anything (VsCode, Java, Node.js, or Postgresql) installed 
 on your local machine to work on the project.  In fact, you can work on the project and run and test it from any device 
 with an modern web browser (e.g. an iPad.)  Everything you need is provided in the CodeSpace.  You also can can make 
 ports public to share live access to your running application with others.
 
+#### Creating the database in CodeSpace and updating configuration
+
+You will need to connect the the local postgres database and run your script to create the database using the SqlTools 
+extension in VSCode.  Since codespaces just includes the default postgres database without an easy way to create a new
+database, you will need to connect to the database named `postgres` to run your initial creation script, and update the 
+`application.properties` file in the `server/src/main/resources` folder with the correct database connection information.  
+(Specifically, change the end of the url to postgres.)
+
+#### Running the client and server in CodeSpace
+
+You run these in the same way as you would on your local machine.  When each one runs, it will alert you that it has forwarded
+a port to a public url.  You can click on this url to see the running application.
+
+#### Making the ports truly public
+
+By default, the forwarded ports are only accessible to you (logged in with your github credentials).  If you want to share 
+the running application with others, you click on the ports tab in the terminal window, and then right-click the appropriate
+port and choose "Change Port Visibility" and set it to public.  You can then share the url with others to let them see the
+running application.
