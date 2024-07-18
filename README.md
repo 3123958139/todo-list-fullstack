@@ -197,8 +197,13 @@ at `client/src/assets/main.css` and links to documentation for this on the defau
 
 This project is set up to work with GitHub CodeSpace.  You can open the project in a CodeSpace by clicking the green
 "Code" button at the top of the repository page, and selecting "Open with CodeSpace".  This will open the project in a
-CodeSpace, and you can start the server and client applications from the terminal in the CodeSpace, just like you would
-on your local machine.
+CodeSpace.
+
+You will need to connect the the local postgres database and run your script to create the database using the SqlTools 
+extension in VSCode.  Since codespaces just includes the default postgres database without an easy way to create a new
+database, you will need to connect to the database named `postgres` and update the `application.properties` file in the 
+`server/src/main/resources` folder with the correct database connection information.  (Specifically, change the end of 
+the url to postgres.)
 
 A benefit to using CodeSpace is that you do not need to have anything (VsCode, Java, Node.js, or Postgresql) installed 
 on your local machine to work on the project.  In fact, you can work on the project and run and test it from any device 
