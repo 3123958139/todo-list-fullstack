@@ -1,34 +1,26 @@
 import { router } from './main';
 import { store } from './main';
+import axios from 'axios';
 
 export default {
     async login(username, password, rememberMe) {
-        const authResponse = await fetch('/auth/login', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ username, password })
-        });
-
-        if (authResponse.ok) {
-            const body = await authResponse.json();
-            store.commit('setToken', body.accessToken.token);
+        try {
+            const authResponse = await axios.post('/auth/login', { username, password });
+            store.commit('setToken', authResponse.data.accessToken.token);
             if (rememberMe) {
-                localStorage.setItem('token', body.accessToken.token);
+                localStorage.setItem('token', authResponse.data.accessToken.token);
             }
 
-            const userResponse = await fetch('/api/users/' + username, {
+            const userResponse = await axios.get('/api/users/' + username, {
                 headers: {
-                    authorization: `Bearer ${body.accessToken.token}`
+                    authorization: `Bearer ${authResponse.data.accessToken.token}`
                 }
             });
-            if (userResponse.ok) {
-                const user = await userResponse.json();
-                store.commit('setUser', user);
-            } 
+            store.commit('setUser', userResponse.data);
+            return true;
+        } catch (error) {
+            return false;
         }
-        return authResponse.ok;
     },
     
     async logout() {
@@ -38,17 +30,14 @@ export default {
     },
 
     async getTodos() {
-        const response = await fetch(
-            '/api/todos',
-            {
+        try {
+            const response = await axios.get('/api/todos', {
                 headers: {
                     authorization: `Bearer ${store.state.token}`
                 }
-            }
-        );
-        if (response.ok) {
-            return await response.json();
-        } else {
+            });
+            return response.data;
+        } catch (error) {
             this.logout();
         }
     }

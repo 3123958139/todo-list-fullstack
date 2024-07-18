@@ -1,4 +1,6 @@
 <script>
+  import serverApi from '../server-api';
+
   export default {
     data() {
       return {
@@ -6,11 +8,9 @@
       };
     },
     async mounted() {
-      const response = await fetch("/api/todos", { cache: "no-store", mode: "no-cors" });
-      this.todos = await response.json();
+      this.todos = await serverApi.getTodos();
     }
   }
-  
 </script>
 
 <template>
