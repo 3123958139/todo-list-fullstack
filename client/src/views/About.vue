@@ -22,7 +22,7 @@
         
 
         <h3>Bootstrap Icon Demo</h3>
-        <p>Here is a Bootstrap Icon: <b-icon-battery-full /></p>
+        <p>Here is a Bootstrap Icon: <b-icon-battery-full style="color: red" /></p>
         <p><a href="https://www.npmjs.com/package/bootstrap-icons-vue">Bootstrap Icons Vue Library</a></p> 
         <p><a href="https://icons.getbootstrap.com/">Bootstrap Icons Lookup Page</a></p>
 
