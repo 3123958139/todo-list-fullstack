@@ -4,19 +4,20 @@ This is a template for a full stack postgresql/java/vue project, with a lot of t
 and a lot of goodies included:
 
 - An SQL script to set up the database, with authentication tables and an example todo table included
-- Spring Boot configured with a postgresql database, controllers for users/todos, and the following libraries:
+- Spring Boot configured with a postgresql database, controllers for users and todos, and the following libraries:
   - Spring Boot DevTools
   - Spring Boot Web
   - Spring Boot Data JPA/Postgres
   - Spring Boot Validation
   - Simple JWT auth provided by eu.fraho.spring
-- Vue.js configured with a basic login page, a todo list page, and the following libraries:
+- Vue.js configured with a basic login system, a todo list page, and the following libraries:
   - Vuex
   - Vue Router
   - Axios
   - Bootstrap Icons
   - Vuetify Components
   - Open Props
+- Configuration files for CodeSpaces to let you work on and run your project in the cloud
 
 ## Starting your project from this template
 
@@ -132,13 +133,26 @@ It doesn't matter which you stop first, but you should stop both before closing 
 
 ## Development
 
-### Server
+### Workflow
 
-The server is a Spring Boot application, and can be developed in the same way as any other Spring Boot application.  
-You can either open the pom.xml project in IntelliJ IDEA, or use the integrated tools in Visual Studio Code.  This
-document will focus on using Visual Studio Code.
+You can start the java application and the vue application using the instructions above in "Initial Setup."
+From here, you can work on the server and client applications in the same way you would work on any other Spring Boot
+or Vue.js application.
 
-#### Adding to the the data model
+### Provided Authentication System
+
+The provided authentication includes an authentication stack and user endpoints in the java application using the
+`eu.fraho.spring library`, and a `UserController`.  The client application includes a login page and a routing system
+that will redirect to the login page if the user is not authenticated.
+
+### Provided API Service Module
+
+The provided API service module in the client application includes methods to access the user and todo endpoints in the
+java application.  You can use these methods as a template to create your own methods to access your own endpoints.
+
+This can be found in the `client/src/server-api.js` file.
+
+### Adding to the the data model
 
 To change the data model to reflect your own application, you will need to add the following for each new table:
 
@@ -148,51 +162,46 @@ To change the data model to reflect your own application, you will need to add t
     annotations for your model classes as well, or write the getters/setters/constructors yourself.
 - Add a new DAO class to the `server/src/main/java/Daos` directory to provide data access methods
 - Add a new controller class to the `server/src/main/java/Controllers` directory to provide REST endpoints for your new table
+- Add methods to the client API service `client/src/server-api.js` to access your new REST endpoints
+- Import the serverApi object into the appropriate Vue components and use your newly added methods to work with the data
 
-#### Customizing user records
+### Customizing user records
 
 User records are important to the authentication system, and are stored in the `users` table.  You can add additional
-fields to the user table by adding fields to the `User` model class, and updating the `create-script.sql` file to 
+fields to the user table by adding fields to the `User` model class, and updating the `database/create-script.sql` file to 
 reflect the changes.  This will not affect the authentication system, but will allow you to store additional information
 about your users.
 
-#### Removing the todo table
+### Removing the todo table
 
 If you do not need the todo table, you can remove the `Todo` model class, `TodoDao` class, and `TodoController` class
 from the project, and then remove the todo table declaration and DROP from the `database/create-script.sql` file.
 
 
-### Client
-
-The client is a Vue.js application, and can be developed in the same way as any other Vue.js application.  The libraries
-discussed throughout TE curriculum are included and configured (Vuex, Vue Router, Axios.)  Some additional libraries are
-also included and can be used if desired (Bootstrap Icons, Vuetify Components, Open Props.)
-
-
-#### Included Authentication System
-
-
-#### Included API Service Library
-
-
-
 #### Using Bootstrap Icons
+
+The project is set up to use Bootstrap Icons.  You can see an example and links to documentation for this on the 
+default about page.  
 
 #### Using Vuetify Components
 
+The project is set up to use Vuetify components.  You can see an example and links to documentation for this on the
+default about page.
+
 #### Using Open Props in your CSS
 
-#### Removing Bootstrap Icons
+The project is set up to use Open Props in the client application.  You can see an example of this in the global css file
+at `client/src/assets/main.css` and links to documentation for this on the default about page.
 
-#### Removing Vuetify Components
+### GitHub CodeSpace
 
-#### Removing the default Open Props Styling
+This project is set up to work with GitHub CodeSpace.  You can open the project in a CodeSpace by clicking the green
+"Code" button at the top of the repository page, and selecting "Open with CodeSpace".  This will open the project in a
+CodeSpace, and you can start the server and client applications from the terminal in the CodeSpace, just like you would
+on your local machine.
 
-#### Removing Open Props entirely
-
-
-
-
-
-
+A benefit to using CodeSpace is that you do not need to have anything (VsCode, Java, Node.js, or Postgresql) installed 
+on your local machine to work on the project.  In fact, you can work on the project and run and test it from any device 
+with an modern web browser (e.g. an iPad.)  Everything you need is provided in the CodeSpace.  You also can can make 
+ports public to share live access to your running application with others.
 
