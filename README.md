@@ -177,6 +177,9 @@ about your users.
 If you do not need the todo table, you can remove the `Todo` model class, `TodoDao` class, and `TodoController` class
 from the project, and then remove the todo table declaration and DROP from the `database/create-script.sql` file.
 
+You should also remove the service calls for Todo from the client API service `client/src/server-api.js` file.
+And finally, clear out the home page so that it does not display the todo list. 
+
 
 #### Using Bootstrap Icons
 
