@@ -5,18 +5,21 @@ export function createAppStore() {
         state: {
             token: null,
             user: null,
-            count: 0
+            userRoles: []
         },
         mutations: {
-            increment(state) {
-                state.count++;
-            },
-            setToken(state, token) {
+            SET_LOGIN_INFO(state, { token, user, roles }) {
+                console.log(token, user, roles);
                 state.token = token;
-            },
-            setUser(state, user) {
                 state.user = user;
+                state.userRoles = roles;
+            },
+            CLEAR_LOGIN_INFO(state) {
+                state.token = null;
+                state.user = null;
+                state.userRoles = [];
             }
+
         }
     });
 }

@@ -1,6 +1,6 @@
 
 <script>
-    import serverApi from '../server-api';
+    import serverApi from '../services/server-api';
     export default {
         data() {
             return {

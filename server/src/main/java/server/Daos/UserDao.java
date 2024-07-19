@@ -36,11 +36,20 @@ public class UserDao {
     }
     
     public void createUser(User user) {
-        template.update("insert into users (username, password) values (?, ?)", user.getUsername(),  passwordEncoder.encode(user.getPassword()));
+        template.update(
+            "insert into users (username, password, email) values (?, ?, ?)", 
+            user.getUsername(),  
+            passwordEncoder.encode(user.getPassword()), 
+            user.getEmail()
+        );
     }
 
     public void updatePassword(User user) {
         template.update("update users set password = ? where username = ?", passwordEncoder.encode(user.getPassword()), user.getUsername());
+    }
+
+    public void updateUserWithoutPassword(User user) {
+        template.update("update users set email = ? where username = ?", user.getEmail(), user.getUsername());
     }
 
     public void deleteUser(String username) {
@@ -62,7 +71,8 @@ public class UserDao {
     private User mapRowToUser(ResultSet row, int rowNumber) throws SQLException {
         return new User(
             row.getString("username"),
-            row.getString("password")
+            row.getString("password"),
+            row.getString("email")
         );
     }
 }

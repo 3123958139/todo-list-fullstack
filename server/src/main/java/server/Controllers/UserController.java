@@ -44,14 +44,36 @@ public class UserController {
     }
 
     @PutMapping("/{username}")
+    public void updateUserWithoutPassword(@RequestBody User User) {
+        userDao.updateUserWithoutPassword(User);
+    }
+
+    @PutMapping("/password/{username}")
     public void updateUser(@PathVariable String username, @RequestBody User User) {
         User.setUsername(username);
         userDao.updatePassword(User);
     }
-
+    
     @DeleteMapping("/{username}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteUserByUsername(@PathVariable String username) {
         userDao.deleteUser(username);
+    }
+
+    @GetMapping("/{username}/roles")
+    public List<String> getUserRoles(@PathVariable String username) {
+        return userDao.getUserRoles(username);
+    }
+
+    @PostMapping("/{username}/roles/{role}")
+    @ResponseStatus(HttpStatus.CREATED)
+    public void addRoleToUser(@PathVariable String username, @PathVariable String role) {
+        userDao.addRoleToUser(username, role);
+    }
+
+    @DeleteMapping("/{username}/roles/{role}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void removeRoleFromUser(@PathVariable String username, @PathVariable String role) {
+        userDao.removeRoleFromUser(username, role);
     }
 }

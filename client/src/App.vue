@@ -1,6 +1,6 @@
 <script>
   import { RouterView, RouterLink } from 'vue-router';
-  import serverApi from './server-api';
+  import serverApi from './services/server-api';
   export default {
     components: {
       RouterView,

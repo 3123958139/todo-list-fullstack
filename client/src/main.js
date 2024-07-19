@@ -8,16 +8,14 @@ import { BootstrapIconsPlugin } from "bootstrap-icons-vue";
 import { createVuetify } from 'vuetify'
 import * as components from 'vuetify/components'
 import * as directives from 'vuetify/directives'
+import serverApi from './services/server-api'
 
 const app = createApp(App);
 export const router = createAppRouter();
 export const store = createAppStore();
 const vuetify = createVuetify({ components, directives });
 
-const localStorageToken = localStorage.getItem('token');
-if (localStorageToken) {
-    store.commit('setToken', localStorageToken);
-}
+await serverApi.restoreLogin();
 
 app.use(router);
 app.use(store);
