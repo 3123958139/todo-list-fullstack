@@ -9,7 +9,6 @@ export function createAppStore() {
         },
         mutations: {
             SET_LOGIN_INFO(state, { token, user, roles }) {
-                console.log(token, user, roles);
                 state.token = token;
                 state.user = user;
                 state.userRoles = roles;

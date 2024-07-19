@@ -42,7 +42,6 @@ export default {
         try {
             const token = localStorage.getItem('token');
             if (token) {
-                console.log(token);
                 const userResponse = await axios.get('/api/profile', {
                     headers: {
                         Authorization: `Bearer ${token}`
