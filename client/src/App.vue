@@ -44,5 +44,5 @@
 </template>
 
 <style scoped>
-  /* Styles for content in this component are in main.css, as they are top-leve (directly below #app) */
+  /* Styles for content in this component are in main.css, as they are top-level (directly below #app) */
 </style>
