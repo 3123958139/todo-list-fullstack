@@ -3,25 +3,37 @@
 This is a template for a full stack postgresql/java/vue project, with a lot of the boilerplate already set up,
 and a lot of goodies included:
 
-- An SQL script to set up the database, with authentication tables and an example todo table included
-- Spring Boot configured with a postgresql database, controllers for users and todos, and the following libraries:
+![Postgres](./doc-images/postgres-logo.png)
+
+An SQL script to set up a postgres database, with authentication tables and an example todo table included.
+
+![SpringBoot](./doc-images/springboot-logo.jpg)
+
+A Server Application written in Java/Spring Boot configured to use the postgresql database, providing REST controllers for users and todos, and including the following Spring Boot libraries:
+
   - Spring Boot DevTools
   - Spring Boot Web
   - Spring Boot Data JPA/Postgres
   - Spring Boot Validation
   - Simple JWT auth provided by eu.fraho.spring
-- Vue.js configured with a basic login system, a todo list page, and the following libraries:
+
+![VueJS](./doc-images/vue-logo.png)
+
+A client application written in Vue.js configured to connect to the SpringBoot server REST API to provide a basic login system and an example todo list page.  Vue is also configured to include the following libraries:
   - Vuex
   - Vue Router
   - Axios
   - Bootstrap Icons
   - Vuetify Components
   - Open Props
-- Configuration files for CodeSpaces to let you work on and run your project in the cloud
+
+![CodeSpaces](./doc-images/codespaces-logo.png)
+
+`.devcontainer` files are included to configure a CodeSpace environment to let you work on and run your project in the cloud right from your github repository.
 
 ## Starting your project from this template
 
-For normal local development, you will need to have the following installed:
+For local development, you will need to have the following installed on your machine:
 - Java 21
 - Node.js 16
 - Postgresql 13
@@ -47,6 +59,14 @@ rm -rf .git
 git init
 git add -A
 git commit -m "Initial commit"
+```
+
+After this, you can rename the project folder to your project name:
+
+```bash
+cd ..
+mv todo-list-fullstack YOUR_PROJECT_NAME
+cd YOUR_PROJECT_NAME
 ```
 
 Next, open a browser, navigate to your github account and create a new repository. Copy the url of the new repository, 
@@ -79,15 +99,12 @@ Or use the integrated git tools in VSCode.
 
 ### Setting up the database
 
-To set up the database, you will need to have Postgresql installed, and a database created. You can use PGAdmin 
-to create a database.
+To set up the database, you will need to have Postgresql installed, and a database created. You can use PGAdmin to create a database.
 
-Once the database is created, update the `application.properties` file in the `server/src/main/resources` folder 
-with the correct database connection information. (Specifically, change the end of the url to the name of your 
-database)
+Once the database is created, update the `server/src/main/resources/application.properties` file 
+with the correct database connection information. (Specifically, change the end of the url to the name of your database)
 
-Once you have created the database, you can use pgadmin or the integrated VS Code SQL Tools to run the SQL script 
-in the `database` folder to set up the tables.
+Once you have created the database, you can use pgadmin or the integrated VS Code SQLTools to run the SQL script in the `database` folder to set up the tables.
 
 
 ## Running the project
