@@ -20,7 +20,7 @@ public class ProfileController {
         this.userDao = userDao;
     }
 
-    @GetMapping
+    @GetMapping("")
     public User getCurrentUser(Principal principal) {
         return userDao.getUserByUsername(principal.getName());
     }

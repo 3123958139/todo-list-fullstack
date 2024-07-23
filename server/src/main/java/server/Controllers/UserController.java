@@ -29,7 +29,7 @@ public class UserController {
         this.userDao = userDao;
     }
 
-    @GetMapping("/")
+    @GetMapping("")
     public String requestMethodName(@RequestParam String param) {
         return new String();
     }
@@ -43,7 +43,7 @@ public class UserController {
         return userDao.getUserByUsername(username);
     }
 
-    @PostMapping("/")
+    @PostMapping("")
     @ResponseStatus(HttpStatus.CREATED)
     public void createUser(@RequestBody User user) {
         userDao.createUser(user);

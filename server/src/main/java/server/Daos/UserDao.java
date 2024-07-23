@@ -1,82 +1,25 @@
 package server.Daos;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.sql.DataSource;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.support.rowset.SqlRowSet;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Component;
-
 import server.Models.User;
 
-@Component
-public class UserDao {
-    private final JdbcTemplate template; 
-    private PasswordEncoder passwordEncoder;
+import java.util.List;
 
-    public UserDao(DataSource dataSource, PasswordEncoder passwordEncoder) {
-        template = new JdbcTemplate(dataSource);
-        this.passwordEncoder = passwordEncoder;
-    }
+public interface UserDao {
+    List<User> getAllUsers();
 
-    public List<User> getAllUsers() {
-        List<User> users = new ArrayList<>();
-        SqlRowSet rowSet = template.queryForRowSet("select * from users");
-        while (rowSet.next()) {
-            users.add(mapRowToUser(rowSet));
-        }
-        return users;
-    }
+    User getUserByUsername(String username);
 
-    public User getUserByUsername(String username) {
-        SqlRowSet row = template.queryForRowSet("select * from users where username = ?", username);
-        if (row.next()) {
-            return mapRowToUser(row);
-        } else {
-            return null;
-        }
-    }
-    
-    public void createUser(User user) {
-        template.update(
-            "insert into users (username, password, email) values (?, ?, ?)", 
-            user.getUsername(),  
-            passwordEncoder.encode(user.getPassword()), 
-            user.getEmail()
-        );
-    }
+    void createUser(User user);
 
-    public void updatePassword(User user) {
-        template.update("update users set password = ? where username = ?", passwordEncoder.encode(user.getPassword()), user.getUsername());
-    }
+    void updatePassword(User user);
 
-    public void updateUserWithoutPassword(User user) {
-        template.update("update users set email = ? where username = ?", user.getEmail(), user.getUsername());
-    }
+    void updateUserWithoutPassword(User user);
 
-    public void deleteUser(String username) {
-        template.update("delete from users where username = ?", username);
-    }
+    void deleteUser(String username);
 
-    public List<String> getUserRoles(String username) {
-        return template.queryForList("select role from user_roles where username = ?", String.class, username);
-    }
+    List<String> getUserRoles(String username);
 
-    public void addRoleToUser(String username, String role) {
-        template.update("insert into user_roles (username, role) values (?, ?)", username, role);
-    }
+    void addRoleToUser(String username, String role);
 
-    public void removeRoleFromUser(String username, String role) {
-        template.update("delete from user_roles where username = ? and role = ?", username, role);
-    }
-
-    private User mapRowToUser(SqlRowSet row) {
-        return new User(
-            row.getString("username"),
-            row.getString("password"),
-            row.getString("email")
-        );
-    }
+    void removeRoleFromUser(String username, String role);
 }
