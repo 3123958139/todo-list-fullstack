@@ -15,7 +15,7 @@ export const router = createAppRouter();
 export const store = createAppStore();
 const vuetify = createVuetify({ components, directives });
 
-await serverApi.restoreLogin();
+serverApi.restoreLogin();
 
 app.use(router);
 app.use(store);

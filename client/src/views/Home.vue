@@ -7,8 +7,8 @@
         todos: []
       };
     },
-    async mounted() {
-      this.todos = await serverApi.getTodos();
+    mounted() {
+      serverApi.getTodos().then(todos => this.todos = todos);
     }
   }
 </script>

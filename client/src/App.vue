@@ -7,8 +7,8 @@
       RouterLink
     },
     methods: {
-      async logout() {
-        await serverApi.logout();
+      logout() {
+        return serverApi.logout();
       }
     }
   }

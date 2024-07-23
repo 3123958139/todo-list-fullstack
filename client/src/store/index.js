@@ -18,7 +18,6 @@ export function createAppStore() {
                 state.user = null;
                 state.userRoles = [];
             }
-
         }
     });
 }

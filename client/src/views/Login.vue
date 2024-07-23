@@ -11,14 +11,14 @@
             }
         },
         methods: {
-            async login() {
-                const loginResult = await serverApi.login(this.username, this.password, this.rememberMe);
-
-                if (!loginResult) {
-                    this.errorMessage = 'Invalid username or password';
-                } else {
-                    this.$router.push('/');
-                }
+            login() {
+                serverApi.login(this.username, this.password, this.rememberMe).then(loginResult => {
+                    if (!loginResult) {
+                        this.errorMessage = 'Invalid username or password';
+                    } else {
+                        this.$router.push('/');
+                    }
+                });
             }
         }    
     }
