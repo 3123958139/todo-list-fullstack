@@ -2,7 +2,6 @@ package server.Controllers;
 
 import java.util.List;
 
-
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -29,13 +28,13 @@ public class TodoController {
         this.todoDao = todoDao;
     }
 
-    @GetMapping
+    @GetMapping("/")
     @PreAuthorize("hasAuthority('ADMIN')")
     public List<Todo> listTodos() {
         return todoDao.getAllTodos();
     }
 
-    @PostMapping
+    @PostMapping("/")
     @ResponseStatus(HttpStatus.CREATED)
     public void createTodo(@RequestBody Todo todo) {
         todoDao.createTodo(todo);

@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import server.Daos.UserDao;
 import server.Models.User;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @RestController
 @RequestMapping("/api/users")
@@ -27,7 +29,11 @@ public class UserController {
         this.userDao = userDao;
     }
 
-    @GetMapping
+    @GetMapping("/")
+    public String requestMethodName(@RequestParam String param) {
+        return new String();
+    }
+    
     public List<User> listUsers() {
         return userDao.getAllUsers();
     }
@@ -37,7 +43,7 @@ public class UserController {
         return userDao.getUserByUsername(username);
     }
 
-    @PostMapping
+    @PostMapping("/")
     @ResponseStatus(HttpStatus.CREATED)
     public void createUser(@RequestBody User user) {
         userDao.createUser(user);

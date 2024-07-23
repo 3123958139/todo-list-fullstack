@@ -1,13 +1,11 @@
 package server.Daos;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.sql.DataSource;
-
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
@@ -24,13 +22,19 @@ public class UserDao {
     }
 
     public List<User> getAllUsers() {
-        return template.query("select * from users", this::mapRowToUser);
+        List<User> users = new ArrayList<>();
+        SqlRowSet rowSet = template.queryForRowSet("select * from users");
+        while (rowSet.next()) {
+            users.add(mapRowToUser(rowSet));
+        }
+        return users;
     }
 
     public User getUserByUsername(String username) {
-        try {
-            return template.queryForObject("select * from users where username = ?", this::mapRowToUser, username);
-        } catch (EmptyResultDataAccessException e) {
+        SqlRowSet row = template.queryForRowSet("select * from users where username = ?", username);
+        if (row.next()) {
+            return mapRowToUser(row);
+        } else {
             return null;
         }
     }
@@ -68,7 +72,7 @@ public class UserDao {
         template.update("delete from user_roles where username = ? and role = ?", username, role);
     }
 
-    private User mapRowToUser(ResultSet row, int rowNumber) throws SQLException {
+    private User mapRowToUser(SqlRowSet row) {
         return new User(
             row.getString("username"),
             row.getString("password"),

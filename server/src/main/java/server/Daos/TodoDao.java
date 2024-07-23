@@ -1,13 +1,11 @@
 package server.Daos;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.List;
+import java.util.ArrayList;
 
 import javax.sql.DataSource;
-
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
 import server.Models.Todo;
@@ -21,13 +19,21 @@ public class TodoDao {
     }
 
     public List<Todo> getAllTodos() {
-        return template.query("select * from todos", this::mapRowToTodo);
+        List<Todo> todos = new ArrayList<>();
+        SqlRowSet rowSet = template.queryForRowSet("select * from todos");
+
+        while (rowSet.next()) {
+            todos.add(mapRowToTodo(rowSet));
+        }
+        return todos;
     }
 
     public Todo getTodoById(int id) {
-        try {
-            return template.queryForObject("select * from todos where id = ?", this::mapRowToTodo, id);
-        } catch (EmptyResultDataAccessException e) {
+        SqlRowSet row = template.queryForRowSet("select * from todos where id = ?", id);
+
+        if (row.next()) {
+            return mapRowToTodo(row);
+        } else {
             return null;
         }
     }
@@ -44,7 +50,7 @@ public class TodoDao {
         template.update("delete from todos where id = ?", id);
     }
 
-    private Todo mapRowToTodo(ResultSet row, int rowNumber) throws SQLException {
+    private Todo mapRowToTodo(SqlRowSet row) {
         return new Todo(
             row.getInt("id"),
             row.getString("title"),
