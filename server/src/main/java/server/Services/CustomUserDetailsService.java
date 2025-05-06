@@ -1,6 +1,7 @@
 package server.Services;
 
 import eu.fraho.spring.securityJwt.base.dto.JwtUser;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import server.Daos.UserDao;
 import server.Models.User;
 

@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.sql.DataSource;
+import server.Daos.UserDao;
+import eu.fraho.spring.securityJwt.base.dto.JwtUser;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -19,6 +21,8 @@ public class JdbcUserDao implements UserDao {
     public JdbcUserDao(DataSource dataSource, PasswordEncoder passwordEncoder) {
         template = new JdbcTemplate(dataSource);
         this.passwordEncoder = passwordEncoder;
+        // admin 1234567890 
+        var x = passwordEncoder.encode("1234567890");
     }
 
     @Override
