@@ -185,6 +185,7 @@ const handleBlur = (e) => {
 @import url('/src/template/login/css/style.css');
 @import url('/src/template/login/css/all.min.css');
 @import url('/src/template/login/css/responsive.css');
+@import url('/src/template/login/css/custom.css');
 
 #login-form, #register-form {
   transition: opacity 0.1s ease;
