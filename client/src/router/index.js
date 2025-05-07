@@ -3,6 +3,7 @@ import Home from '../views/Home.vue';
 import About from '../views/About.vue';
 import Login from '@/views/Login.vue';
 import { store } from '@/main';
+import Register from "@/views/Register.vue";
 
 export function createAppRouter() {
     const router = createRouter({
@@ -25,6 +26,12 @@ export function createAppRouter() {
                 name: 'Login',
                 requireAuth: false,
                 component: Login
+            },
+            {
+                path: '/register',
+                name: 'Register',
+                requireAuth: true,
+                component: Register
             }
         ]
     });
